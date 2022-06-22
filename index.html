@@ -20,7 +20,7 @@
   <body x-data="portfolio" class="bg-black font-body">
     <header class="max-w-4xl mx-auto py-8 lg:px-4">
       <nav class="flex justify-between items-center text-white px-4 lg:px-0">
-        <h2 class="font-heading">Hunter Trammell</h2>
+        <h2 class="font-heading" x-text="title"></h2>
         <button @click="handleNav" class="inline-block lg:hidden" @click="">
           <img src="./assets/menu.svg" alt="Mobile Menu" />
         </button>
@@ -59,40 +59,22 @@
         <div
           class="flex justify-center lg:justify-between items-center flex-wrap py-14"
         >
-          <img class="p-4" src="./assets/logos/walmart.svg" alt="walmart" />
-          <img class="p-4" src="./assets/logos/jp-morgan.svg" alt="jp-morgan" />
-          <img class="p-4" src="./assets/logos/visa.svg" alt="visa" />
-          <img class="p-4" src="./assets/logos/tinder.svg" alt="tinder" />
-          <img class="p-4" src="./assets/logos/samsung.svg" alt="samsung" />
-          <img class="p-4" src="./assets/logos/verizon.svg" alt="verizon" />
+          <template x-for="logo in logos">
+            <img class="p-4" :src="logo.src" :alt="logo.alt" :key="logo.id" />
+          </template>
         </div>
       </section>
       <section class="max-w-4xl mx-auto px-4 pb-14">
         <div class="grid lg:grid-cols-2 gap-16">
-          <div class="text-gray-400">
-            <img src="./assets/spense.png" alt="spense" />
-            <h2 class="font-heading text-white text-3xl py-4">
-              Spense.com &rarr;
-            </h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint
-              facilis vero ipsum, officia doloremque reiciendis quia provident.
-              Tenetur dolorem nisi aut iste minima non error cum quod! Totam,
-              quisquam molestiae?
-            </p>
-          </div>
-          <div class="text-gray-400">
-            <img src="./assets/yelp-camp.png" alt="yelp-camp" />
-            <h2 class="font-heading text-white text-3xl py-4">
-              YelpCamp.com &rarr;
-            </h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint
-              facilis vero ipsum, officia doloremque reiciendis quia provident.
-              Tenetur dolorem nisi aut iste minima non error cum quod! Totam,
-              quisquam molestiae?
-            </p>
-          </div>
+          <template x-for="project in projects">
+            <div class="text-gray-400" :key="project.id">
+              <img :src="project.img" :alt="project.imgAlt" />
+              <h2 class="font-heading text-white text-3xl py-4">
+                <span x-text="project.title"></span> &rarr;
+              </h2>
+              <p x-text="project.body"></p>
+            </div>
+          </template>
         </div>
       </section>
       <section class="bg-gray-700">
@@ -160,22 +142,24 @@
       </section>
     </main>
     <footer class="bg-gray-700">
-        <div class="max-w-4xl mx-auto px-4 py-8 flex justify-between items-center">
-            <h2 class="font-heading text-white">Hunter Trammell</h2>
-            <div>
-                <ul class="flex">
-                    <li class="pr-1">
-                        <img src="./assets/social/github.svg" alt="github">
-                    </li>
-                    <li class="px-1">
-                        <img src="./assets/social/linkedin.svg" alt="linkedin">
-                    </li>
-                    <li class="pl-1">
-                        <img src="./assets/social/twitter.svg" alt="twitter">
-                    </li>
-                </ul>
-            </div>
+      <div
+        class="max-w-4xl mx-auto px-4 py-8 flex justify-between items-center"
+      >
+        <h2 class="font-heading text-white" x-text="title"></h2>
+        <div>
+          <ul class="flex">
+            <li class="pr-1">
+              <img src="./assets/social/github.svg" alt="github" />
+            </li>
+            <li class="px-1">
+              <img src="./assets/social/linkedin.svg" alt="linkedin" />
+            </li>
+            <li class="pl-1">
+              <img src="./assets/social/twitter.svg" alt="twitter" />
+            </li>
+          </ul>
         </div>
+      </div>
     </footer>
     <script src="./app.js"></script>
   </body>
